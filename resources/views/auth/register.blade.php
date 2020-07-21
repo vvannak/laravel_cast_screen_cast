@@ -1,48 +1,173 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-@extends('layouts.app')
-@section('content')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Anny Tailor</title>
+    <meta name="description" content="Free open source Tailwind CSS Store template">
+    <meta name="keywords" content="tailwind,tailwindcss,tailwind css,css,starter template,free template,store template, shop layout, minimal, monochrome, minimalistic, theme, nordic">
 
-        <!-- Register Section -->
-        <div class="w-full md:w-1/2 flex flex-col">
+    <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <!--Replace with your tailwind.css once created-->
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet">
 
-            <div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12">
-                <a href="/" class="bg-black text-white font-bold text-xl p-4">Logo</a>
-            </div>
+    <style>
+        .worksans {
+            font-family: 'Work Sans', sans-serif;
+        }
+                
+        #menu-toggle:checked + #menu {
+            display: block;
+        }
+        
+        .hover\:grow {
+            transition: all 0.3s;
+            transform: scale(1);
+        }
+        
+        .hover\:grow:hover {
+            transform: scale(1.02);
+        }
+        
+        .carousel-open:checked + .carousel-item {
+            position: static;
+            opacity: 100;
+        }
+        
+        .carousel-item {
+            -webkit-transition: opacity 0.6s ease-out;
+            transition: opacity 0.6s ease-out;
+        }
+        
+        #carousel-1:checked ~ .control-1,
+        #carousel-2:checked ~ .control-2,
+        #carousel-3:checked ~ .control-3 {
+            display: block;
+        }
+        
+        .carousel-indicators {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            bottom: 2%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 10;
+        }
+        
+        #carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
+        #carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
+        #carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
+            color: #000;
+            /*Set to match the Tailwind colour you want the active one to be */
+        }
+    </style>
 
-            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
-                <p class="text-center text-3xl">Join Us.</p>
-                <form class="flex flex-col pt-3 md:pt-8" onsubmit="event.preventDefault();">
-                    <div class="flex flex-col pt-4">
-                        <label for="name" class="text-lg">Name</label>
-                        <input type="text" id="name" placeholder="John Smith" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+</head>
+
+<body class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal">
+
+    @include('partials.nav-header')
+    <section class="bg-white py-8">
+
+        <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+
+            <nav id="store" class="w-full z-30 top-0 px-6 py-1">
+                <div class="w-full max-w-6xl min-w-0 mx-auto px-6">
+
+                    <a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl " href="#">
+				Account Setting
+			</a>
+              </div>
+            </nav>
+            <div class="w-full max-w-6xl min-w-0 mx-auto px-6">
+			<div class="flex mt-12 bg-white rounded-md">
+				<div class="w-64 bg-red-100 rounded-l-md border-r border-dashed border-red-200">
+					<div class="flex justify-center items-center h-32 text-red-700 text-center font-semibold text-3xl italic">
+						Logo
+					</div>
+					<div class="mt-8 border-t border-red-200">
+						<a href="#" class="block py-3 px-6 text-red-700 font-semibold border-b border-red-200">
+							Facebook
+						</a>
+						<a href="#" class="block py-3 px-6 bg-red-900 text-red-100 font-semibold border-b border-red-200">
+							Google
+						</a>
+						<a href="#" class="block py-3 px-6 text-red-700 font-semibold border-b border-red-200">
+							Microsoft
+						</a>
+						<a href="#" class="block py-3 px-6 text-red-700 font-semibold border-b border-red-200">
+							Yahoo
+						</a>
+						<a href="#" class="block py-3 px-6 text-red-700 font-semibold border-b border-red-200">
+							Apple
+						</a>
+						<a href="#" class="block py-3 px-6 text-red-700 font-semibold border-b border-red-200">
+							Amazon
+						</a>
+						<a href="#" class="block py-3 px-6 text-red-700 font-semibold border-b border-red-200">
+							Twitter
+						</a>
+					</div>
+				</div>
+				<div class="flex-grow">
+					<div class="flex flex-col mx-40 mt-20">
+						<div class="flex items-center mb-4">
+							<label for="email" class="w-24 font-semibold text-gray-700">Email</label>
+							<input type="email" class="flex-grow border border-red-200 rounded py-1 px-3" placeholder="Email" />
+						</div>
+						<div class="flex items-center mb-4">
+							<label for="username" class="w-24 font-semibold text-gray-700">Username</label>
+							<input type="text" class="flex-grow border border-red-200 rounded py-1 px-3" placeholder="Username" />
+						</div>
+						<div class="flex items-center mb-4">
+							<label for="password" class="w-24 font-semibold text-gray-700">Password</label>
+							<input type="password" class="flex-grow border border-red-200 rounded py-1 px-3" placeholder="Password" />
+						</div>
+						<div class="flex items-center mb-4">
+							<textarea name="description" class="flex-grow border border-red-200 rounded py-1 px-3" id="description" rows="8"></textarea>
+						</div>
+						<div class="flex items-center mb-4">
+							<button class="py-1 px-4 bg-red-800 text-red-100 font-semibold hover:bg-red-900 hover:shadow border border-red-200 rounded mr-2">Submit</button>
+							<button class="py-1 px-4 bg-white text-red-700 font-semibold hover:shadow border border-red-200 rounded">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        </div>
+
+    </section>
+
+    <footer class="container mx-auto bg-white py-8 border-t border-gray-400">
+        <div class="container flex px-3 py-8 ">
+            <div class="w-full mx-auto flex flex-wrap">
+                <div class="flex w-full lg:w-1/2 ">
+                    <div class="px-3 md:px-0">
+                        <h3 class="font-bold text-gray-900">About</h3>
+                        <p class="py-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel mi ut felis tempus commodo nec id erat. Suspendisse consectetur dapibus velit ut lacinia.
+                        </p>
                     </div>
-
-                    <div class="flex flex-col pt-4">
-                        <label for="email" class="text-lg">Email</label>
-                        <input type="email" id="email" placeholder="your@email.com" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="flex w-full lg:w-1/2 lg:justify-end lg:text-right">
+                    <div class="px-3 md:px-0">
+                        <h3 class="font-bold text-gray-900">Social</h3>
+                        <ul class="list-reset items-center pt-3">
+                            <li>
+                                <a class="inline-block no-underline hover:text-black hover:underline py-1" href="#">Add social links</a>
+                            </li>
+                        </ul>
                     </div>
-    
-                    <div class="flex flex-col pt-4">
-                        <label for="password" class="text-lg">Password</label>
-                        <input type="password" id="password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
-                    </div>
-
-                    <div class="flex flex-col pt-4">
-                        <label for="confirm-password" class="text-lg">Confirm Password</label>
-                        <input type="password" id="confirm-password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
-                    </div>
-    
-                    <input type="submit" value="Register" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
-                </form>
-                <div class="text-center pt-12 pb-12">
-                    <p>Already have an account? <a href="{{ route('login') }}" class="underline font-semibold">Log in here.</a></p>
                 </div>
             </div>
-
         </div>
+    </footer>
 
-        <!-- Image Section -->
-        <div class="w-1/2 shadow-2xl">
-            <img class="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0">
-        </div>
-@endsection
+</body>
+
+</html>
